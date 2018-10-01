@@ -16,10 +16,28 @@ public class Professor implements Identificavel {
 	@SequenceGenerator(name = "professor_seq")
 	
 	private Long id;
-	private String nomeProfessor;
-	private String cpfProf;
+	private String nome;
+	private String cpf;
 	private String nascimento;
+	private String username;
+	private String password;
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassowrd(String password) {
+		this.password = password;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -28,20 +46,20 @@ public class Professor implements Identificavel {
 		this.id = id;
 	}
 	
-	public String getNomeProfessor() {
-		return nomeProfessor;
+	public String getnome() {
+		return nome;
 	}
 	
-	public void setNomeProfessor(String nomeProfessor) {
-		this.nomeProfessor = nomeProfessor;
+	public void setnome(String nome) {
+		this.nome = nome;
 	}
 	
-	public String getCpfProf() {
-		return cpfProf;
+	public String getCpf() {
+		return cpf;
 	}
 	
-	public void setCpfProf(String cpfProf) {
-		this.cpfProf = cpfProf;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	
 	public String getNascimento() {
@@ -59,7 +77,7 @@ public class Professor implements Identificavel {
 
 	@Override
 	public String toString() {
-		return "Professor [id=" + id + ", nomeProfessor=" + nomeProfessor + ", cpfProf=" + cpfProf + ", nascimento="
+		return "Professor [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", nascimento="
 				+ nascimento + "]";
 	}
 	

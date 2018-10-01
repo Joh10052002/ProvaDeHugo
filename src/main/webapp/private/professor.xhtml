@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title> Professor </title>
+</h:head>
+
+
+<h:body>
+	<p:messages />
+
+	<h:form>
+		<p:panelGrid columns="2">
+			<f:facet name="caption">
+				<h:outputText value="Filtros" />
+			</f:facet>
+			<f:facet name="header">
+				<h:outputText value="Professor" />
+			</f:facet>
+
+			<p:outputLabel value="Nome: " for="nomeField" />
+			<p:inputText id="nomeField" value="#{professorBean.professor.nome}"
+				label="Nome" style="width:350px" />
+
+			<p:outputLabel value="Cpf: " for="cpfField" />
+			<p:inputText id="cpfField" value="#{professorBean.professor.cpf}"
+				label="Nome" style="width:350px" />
+
+			<p:outputLabel value="Nascimento: " for="nascimentoField" />
+			<p:calendar id="nascimentoField"
+				value="#{professorBean.professor.nascimento}" label="Nascimento" />
+
+			<p:outputLabel value="Username: " for="usernameField" />
+			<p:inputText id="usernameField"
+				value="#{professorBean.professor.username}" label="Username"
+				style="width:350px" />
+
+			<p:outputLabel value="Password: " for="passwordField" />
+			<p:password id="passwordField"
+				value="#{professorBean.professor.password}" label="Password"
+				style="width:350px" />
+
+			<p:commandButton id="btnNovo" value="Novo"
+				action="#{professorBean.save()}" ajax="false"  />
+			<p:commandButton id="btnLimpar" value="Limpar"
+				action="#{professorBean.limpar()}" ajax="false" />
+		</p:panelGrid>
+
+
+		<p:dataTable id="dataTableProfessores" border="1" var="professor"
+			value="#{professorBean.professores}">
+			<p:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{professor.id}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{professor.nome}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Cpf</f:facet>
+				<h:outputText value="#{professor.cpf}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Nascimento</f:facet>
+				<h:outputText value="#{professor.nascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+			
+			
+			<p:column rendered="#{professorBean.isUserInRole('PROFESSOR')}">
+				<f:facet name="header">Opções</f:facet>
+				<p:commandButton value="Remover" ajax="false"
+					action="#{professorBean.remove(professor)}"></p:commandButton>
+				<p:commandButton value="Editar" ajax="false"
+					action="#{professorBean.editar(professor.id)}"></p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
